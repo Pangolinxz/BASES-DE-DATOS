@@ -1,0 +1,20 @@
+Table PLATO {
+  nombre text [pk]
+}
+
+Table INGREDIENTE {
+  nombre text [pk]
+}
+
+Table PLATO_INGREDIENTE {
+  nombre_plato text [not null]
+  nombre_ingrediente text [not null]
+  cantidad text
+
+  indexes {
+    (nombre_plato, nombre_ingrediente) [pk]
+  }
+}
+
+Ref: PLATO_INGREDIENTE.nombre_plato > PLATO.nombre
+Ref: PLATO_INGREDIENTE.nombre_ingrediente > INGREDIENTE.nombre

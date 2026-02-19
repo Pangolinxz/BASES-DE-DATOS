@@ -1,0 +1,40 @@
+Project BASES_DE_DATOS_RESTAURANTE {
+  database_type: "SQLite"
+  Note: "Modelo logico derivado del DER. Se muestra 1:N y N:M con tabla puente."
+}
+
+Table CATEGORIA {
+  nombre text [pk, note: "Identificador unico de la categoria"]
+
+  Note: "Una categoria puede tener muchos platos."
+}
+
+Table PLATO {
+  nombre text [pk, note: "Identificador unico del plato"]
+  descripcion text
+  dificultad text
+  foto text
+  nombre_categoria text [not null, note: "FK hacia CATEGORIA"]
+
+  Note: "Cada plato pertenece a una categoria."
+}
+
+Table INGREDIENTE {
+  nombre text [pk, note: "Identificador unico del ingrediente"]
+}
+
+Table PLATO_INGREDIENTE {
+  nombre_plato text [not null, note: "FK hacia PLATO"]
+  nombre_ingrediente text [not null, note: "FK hacia INGREDIENTE"]
+  cantidad text [note: "Ejemplo: 200 g, 1 unidad"]
+
+  indexes {
+    (nombre_plato, nombre_ingrediente) [pk]
+  }
+
+  Note: "Resuelve la relacion N:M entre PLATO e INGREDIENTE."
+}
+
+Ref: PLATO.nombre_categoria > CATEGORIA.nombre
+Ref: PLATO_INGREDIENTE.nombre_plato > PLATO.nombre
+Ref: PLATO_INGREDIENTE.nombre_ingrediente > INGREDIENTE.nombre

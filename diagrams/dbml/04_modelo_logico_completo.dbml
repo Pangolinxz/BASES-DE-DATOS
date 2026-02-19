@@ -1,0 +1,29 @@
+Table CATEGORIA {
+  nombre text [pk]
+}
+
+Table PLATO {
+  nombre text [pk]
+  descripcion text
+  dificultad text
+  foto text
+  nombre_categoria text [not null]
+}
+
+Table INGREDIENTE {
+  nombre text [pk]
+}
+
+Table PLATO_INGREDIENTE {
+  nombre_plato text [not null]
+  nombre_ingrediente text [not null]
+  cantidad text
+
+  indexes {
+    (nombre_plato, nombre_ingrediente) [pk]
+  }
+}
+
+Ref: PLATO.nombre_categoria > CATEGORIA.nombre
+Ref: PLATO_INGREDIENTE.nombre_plato > PLATO.nombre
+Ref: PLATO_INGREDIENTE.nombre_ingrediente > INGREDIENTE.nombre

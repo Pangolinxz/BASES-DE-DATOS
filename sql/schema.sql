@@ -1,0 +1,33 @@
+PRAGMA foreign_keys = ON;
+
+CREATE TABLE IF NOT EXISTS CATEGORIA (
+  nombre TEXT PRIMARY KEY
+);
+
+CREATE TABLE IF NOT EXISTS PLATO (
+  nombre TEXT PRIMARY KEY,
+  descripcion TEXT,
+  dificultad TEXT,
+  foto TEXT,
+  nombre_categoria TEXT NOT NULL,
+  FOREIGN KEY (nombre_categoria) REFERENCES CATEGORIA(nombre)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT
+);
+
+CREATE TABLE IF NOT EXISTS INGREDIENTE (
+  nombre TEXT PRIMARY KEY
+);
+
+CREATE TABLE IF NOT EXISTS PLATO_INGREDIENTE (
+  nombre_plato TEXT NOT NULL,
+  nombre_ingrediente TEXT NOT NULL,
+  cantidad TEXT,
+  PRIMARY KEY (nombre_plato, nombre_ingrediente),
+  FOREIGN KEY (nombre_plato) REFERENCES PLATO(nombre)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+  FOREIGN KEY (nombre_ingrediente) REFERENCES INGREDIENTE(nombre)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT
+);

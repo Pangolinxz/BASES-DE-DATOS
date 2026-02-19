@@ -1,0 +1,14 @@
+Table CATEGORIA {
+  nombre text [pk]
+}
+
+Table PLATO {
+  nombre text [pk]
+  descripcion text
+  dificultad text
+  foto text
+}
+
+Table INGREDIENTE {
+  nombre text [pk]
+}

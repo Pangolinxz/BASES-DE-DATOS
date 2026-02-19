@@ -1,0 +1,13 @@
+Table CATEGORIA {
+  nombre text [pk]
+}
+
+Table PLATO {
+  nombre text [pk]
+  descripcion text
+  dificultad text
+  foto text
+  nombre_categoria text [not null]
+}
+
+Ref: PLATO.nombre_categoria > CATEGORIA.nombre
