@@ -101,33 +101,6 @@ erDiagram
     }
 ```
 
-## Herramientas online recomendadas (bonitas y presentables)
-1. **dbdiagram.io** (`https://dbdiagram.io`)
-   - Pegas DBML o SQL y te genera el diagrama limpio.
-   - Ideal para entregas rapidas y exportar imagen.
-2. **Mermaid Live Editor** (`https://mermaid.live`)
-   - Pegas sintaxis Mermaid y exportas PNG/SVG.
-   - Muy util si ya usas GitHub/Markdown.
-3. **draw.io / diagrams.net** (`https://app.diagrams.net`)
-   - Editor visual para acomodar cajas/flechas manualmente con estilo profesional.
-
-## Implementacion SQL (SQLite)
-Script de creacion:
-
-- `sql/schema.sql`
-
-Crear la base local:
-
-```powershell
-python -c "import sqlite3; con=sqlite3.connect('db/bases_datos.sqlite'); con.executescript(open('sql/schema.sql', encoding='utf-8').read()); con.close()"
-```
-
-## Mini validacion (opcional)
-Consultar tablas creadas:
-
-```powershell
-python -c "import sqlite3; con=sqlite3.connect('db/bases_datos.sqlite'); cur=con.cursor(); cur.execute(\"SELECT name FROM sqlite_master WHERE type='table' ORDER BY name\"); print([r[0] for r in cur.fetchall()]); con.close()"
-```
 
 ## Errores comunes que debes evitar
 - Poner una relacion N:M sin tabla puente.
